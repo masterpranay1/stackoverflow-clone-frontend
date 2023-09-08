@@ -1,0 +1,91 @@
+.questions_wrapper {
+  display: flex;
+  flex-direction: row;
+
+  min-height: 100vh;
+}
+
+.questions_wrapper .main {
+  padding: 2em;
+  width: 100vw;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+/* @media (min-width: 768px) {
+  .questions_wrapper .main {
+    width: 50vw;
+  }
+} */
+
+.questions_wrapper header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  width: 100%;
+}
+
+.questions_wrapper header h2 {
+  font-size: 2.5em;
+  font-weight: 600;
+}
+
+.questions_wrapper button.primary {
+  background-color: #0086D8;
+  color: #fff;
+  padding: 0.6em 1.2em;
+  border: none;
+  border-radius: 5px;
+
+  height: fit-content;
+  margin-left: auto;
+}
+
+/* Styles for the question component */
+.question {
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles for question__votes, question__answers, and question__views */
+.question__votes,
+.question__answers,
+.question__views {
+  display: inline-block;
+  margin-right: 20px;
+  color: #555;
+}
+
+/* Styles for spans inside question__votes, question__answers, and question__views */
+.question__votes span,
+.question__answers span,
+.question__views span {
+  font-weight: bold;
+  margin-right: 5px;
+  color: #333;
+}
+
+/* Styles for question__content */
+.question__content {
+  margin-top: 20px;
+}
+
+/* Styles for h3 and p elements inside question__content */
+.question__content h3 {
+  font-size: 1.4em;
+  margin: 0;
+  color: #333;
+}
+
+.question__content p {
+  margin: 10px 0;
+  color: #666;
+}
+
