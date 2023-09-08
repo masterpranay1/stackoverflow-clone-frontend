@@ -1,24 +1,28 @@
-import bars from '../../assets/bars.svg';
-import logo from '../../assets/logo.png';
-import './Navbar.css';
+import bars from "../../assets/bars.svg";
+import logo from "../../assets/logo.png";
+import "./Navbar.css";
 
 import { useAppDispatch } from "../../app/hooks";
 import { toggleSidebar } from "../../features/navbar/navslice";
 
 const Navbar = () => {
-
   const dispatch = useAppDispatch();
 
   const handleBarClick = () => {
     dispatch(toggleSidebar());
-  }
+  };
 
   return (
     <nav>
-      <img className="bars" src={bars} alt="bars" onClick={handleBarClick}/>
+      <img className="bars" src={bars} alt="bars" onClick={handleBarClick} />
 
-      <section className="logo_container">
-        <img src={logo} className="logo"/>
+      <section
+        className="logo_container"
+        onClick={() => {
+          window.location.href = "/";
+        }}
+      >
+        <img src={logo} className="logo" />
       </section>
 
       <section className="links">
@@ -28,7 +32,7 @@ const Navbar = () => {
       </section>
 
       <section className="search_box">
-        <input type="text" placeholder="Search"/>
+        <input type="text" placeholder="Search" />
       </section>
 
       <section className="button_wrapper">
@@ -41,7 +45,7 @@ const Navbar = () => {
         </button>
       </section>
     </nav>
-  )
-}
+  );
+};
 
 export default Navbar;
