@@ -4,9 +4,11 @@ import "./Navbar.css";
 
 import { useAppDispatch } from "../../app/hooks";
 import { toggleSidebar } from "../../features/navbar/navslice";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const handleBarClick = () => {
     dispatch(toggleSidebar());
@@ -36,11 +38,15 @@ const Navbar = () => {
       </section>
 
       <section className="button_wrapper">
-        <button>
+        <button onClick={() => {
+          navigate("/login");
+        }}>
           <span>Log In</span>
         </button>
 
-        <button>
+        <button onClick={() => {
+          navigate("/register");
+        }}>
           <span>Sign Up</span>
         </button>
       </section>
