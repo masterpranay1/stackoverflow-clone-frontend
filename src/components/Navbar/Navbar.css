@@ -1,0 +1,106 @@
+nav {
+  width: 100%;
+  /* height: 5em; */
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1em;
+
+  padding: 0.5em 2em;
+
+  background: #f8f9f9;
+  border-top: solid 3px #ef8236;
+}
+
+.bars {
+  width: 1em;
+  cursor: pointer;
+}
+
+.logo {
+  padding: 0.3em 1.2em;
+}
+
+.logo:hover {
+  background: rgb(226, 226, 226);
+  cursor: pointer;
+}
+
+.links {
+  /* display: flex; */
+  flex-direction: row;
+  align-items: center;
+  gap: 1em;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  display: none;
+}
+
+.links a {
+  color: #333;
+  text-decoration: none;
+  padding: 0.5em 1em;
+  border-radius: 5px;
+  font-size: 1em;
+}
+
+.links a:hover {
+  background: rgb(226, 226, 226);
+}
+
+.search_box {
+  /* display: flex; */
+  display: none;
+}
+
+.search_box input {
+  width: 100%;
+  height: 2em;
+  padding: 0.5em 1em;
+  border: 1px solid black;
+  border-radius: 5px;
+  outline: none;
+  font-size: 1em;
+}
+
+.search_box input:focus {
+  border: 1px solid #ef8236;
+}
+
+.button_wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1em;
+
+  margin-left: auto;
+}
+
+.button_wrapper button {
+  /* stackoverflow login button css */
+  background: #e7f8fe;
+  border: 1px solid blue;
+  border-radius: 5px;
+  color: rgb(69, 69, 69);
+  font-size: 0.8em;
+  padding: 0.5em 1em;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+
+  .bars {
+    display: none;
+  }
+
+  .links {
+    display: flex;
+  }
+
+  .search_box {
+    display: flex;
+  }
+}

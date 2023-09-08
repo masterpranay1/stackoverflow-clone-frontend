@@ -1,10 +1,14 @@
 import './App.css'
 
+import Navbar from "./components/Navbar/Navbar"
+
 function App() {
 
   return (
     <>
-      Stackoverflow Clone
+      <div className="container">
+        <Navbar />
+      </div>
     </>
   )
 }
