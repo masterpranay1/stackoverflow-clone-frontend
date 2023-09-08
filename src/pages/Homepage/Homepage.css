@@ -1,0 +1,7 @@
+.homepage_wrapper {
+  display: flex;
+  flex-direction: row;
+
+  min-height: 100vh;
+  background : pink;
+}
