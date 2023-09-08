@@ -2,11 +2,20 @@ import bars from '../../assets/bars.svg';
 import logo from '../../assets/logo.png';
 import './Navbar.css';
 
+import { useAppDispatch } from "../../app/hooks";
+import { toggleSidebar } from "../../features/navbar/navslice";
+
 const Navbar = () => {
+
+  const dispatch = useAppDispatch();
+
+  const handleBarClick = () => {
+    dispatch(toggleSidebar());
+  }
 
   return (
     <nav>
-      <img className="bars" src={bars} alt="bars"/>
+      <img className="bars" src={bars} alt="bars" onClick={handleBarClick}/>
 
       <section className="logo_container">
         <img src={logo} className="logo"/>
