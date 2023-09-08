@@ -3,14 +3,17 @@ import './Question.css';
 
 interface QuestionProps {
   question: {
-    id: number;
-    votes: number;
-    answers: number;
-    views: number;
+    id: string;
     title: string;
     description: string;
+    createdAt: string;
+    updatedAt: string;
+    userId: string;
+    answers: any[];
+    votes: number;
+    views: number;
     tags: string[];
-  };
+  }
 }
 
 const Question: React.FC<QuestionProps> = ({ question }) => {
