@@ -1,0 +1,40 @@
+aside {
+  display: flex;
+  flex-direction: column;
+
+  background: #fff;
+  border-right: 1px solid #ddd;
+
+  min-height: 100vh;
+  width: 10em;
+  position: sticky;
+  padding: 1em 0;
+}
+
+aside a, p {
+  padding: 0.6em 1.2em;
+  text-decoration: none;
+  color: #333;
+
+  width: 100%;
+}
+
+aside a:hover {
+  background: #ddd;
+}
+
+aside a.active {
+  background: #ddd;
+  font-weight: bold;
+  border-right: 3px solid #ef8236;
+}
+
+.sidebar_links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sidebar_links a {
+  padding-left: 2em;
+}
