@@ -1,8 +1,9 @@
-import React, { useState } from "react";
 import "./style.css";
-import { useAppSelector } from "../../app/hooks";
+import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { useNavigate, useParams } from "react-router-dom";
 import Sidebar from "../../components/Sidebar/Sidebar";
+import { upvoteQuestion, downvoteQuestion, incrementView } from "../../features/question/questionslice";
+import { useEffect } from "react";
 
 interface Answer {
   id: number;
@@ -26,14 +27,32 @@ interface QuestionDetailProps {
 
 const QuestionDetail = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const questions = useAppSelector((state) => state.question.questions);
   const isSidebarOpen = useAppSelector((state) => state.nav.isSidebarOpen);
+  const token = useAppSelector((state) => state.auth.token);
 
   const param = useParams<{ questionId: string }>();
   const question = questions.find(
     (question) => question.id === param.questionId
   ) as QuestionDetailProps["question"];
+
+  const handleUpvote = () => {
+    if (token === "") {
+      navigate("/login");
+      return;
+    }
+    dispatch(upvoteQuestion(question.id));
+  };
+
+  const handleDownvote = () => {
+    if (token === "") {
+      navigate("/login");
+      return;
+    }
+    dispatch(downvoteQuestion(question.id));
+  };
 
   return (
     <div className="question-detail-wrapper">
@@ -56,9 +75,9 @@ const QuestionDetail = () => {
 
         <section className="question-detail-question">
           <div className="vote-wrapper">
-            <span className="icon">U</span>
+            <span className="icon" onClick={handleUpvote}>U</span>
             <span className="votes">{question.votes}</span>
-            <span className="icon">D</span>
+            <span className="icon" onClick={handleDownvote}>D</span>
           </div>
 
           <div className="question-content">

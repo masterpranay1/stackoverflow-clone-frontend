@@ -32,8 +32,33 @@ export const questionSlice = createSlice({
     addQuestion: (state, action) => {
       state.questions.push(action.payload);
     },
+    upvoteQuestion: (state, action) => {
+      const question = state.questions.find(
+        (question) => question.id === action.payload
+      );
+      if (question) {
+        question.votes++;
+      }
+    },
+    downvoteQuestion: (state, action) => {
+      const question = state.questions.find(
+        (question) => question.id === action.payload
+      );
+      if (question) {
+        question.votes--;
+      }
+    },
+    incrementView: (state, action) => {
+      const question = state.questions.find(
+        (question) => question.id === action.payload
+      );
+      if (question) {
+        question.views++;
+      }
+    },
   },
 });
 
-export const { addQuestion } = questionSlice.actions;
+export const { addQuestion, upvoteQuestion, downvoteQuestion, incrementView } =
+  questionSlice.actions;
 export default questionSlice.reducer;
