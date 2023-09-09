@@ -1,0 +1,100 @@
+/* Styles for the QuestionDetail component */
+
+.question-detail-wrapper {
+  /* background-color: #eee; */
+  display: flex;
+}
+
+.question-detail {
+  width: 100%;
+  padding: 2em;
+}
+
+.question-detail header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6em;
+
+  padding-bottom: 2em;
+
+  border-bottom: 1px solid #eee;
+}
+
+.question-detail header .header-title {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+}
+
+.question-detail header .header-title h1 {
+  margin: 0;
+  font-size: 2em;
+  font-weight: 400;
+}
+
+.question-detail header .header-title button {
+  margin-left: auto;
+  background: #0074CC;
+  border: none;
+  color: white;
+  padding: 0.5em 1em;
+  border-radius: 5px;
+  width: fit-content;
+  height: fit-content;
+}
+
+.question-detail header .header-stats {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+}
+
+.question-detail-question {
+  margin-top: 2em;
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+}
+
+.question-detail-question .vote-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.question-detail-question .vote-wrapper span.icon {
+  font-size: 1.5em;
+  padding: 0.25em 0.5em;
+  border-radius: 50%;
+  border: 1px solid #eee;
+  cursor: pointer;
+}
+
+.question-detail-question .vote-wrapper span.votes {
+  font-size: 2em;
+  font-weight: 600;
+}
+
+.question-detail-question .question-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.question-detail-question .question-content p {
+  margin: 0;
+  padding: 0;
+  margin-bottom: auto;
+  font-size: 1.2em;
+}
+
+.question-detail-answer {
+  margin-top: 2em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
