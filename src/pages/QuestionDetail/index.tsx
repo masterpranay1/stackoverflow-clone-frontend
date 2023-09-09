@@ -39,7 +39,7 @@ const QuestionDetail = () => {
   ) as QuestionDetailProps["question"];
 
   const handleUpvote = () => {
-    if (token === "") {
+    if (token === null) {
       navigate("/login");
       return;
     }
@@ -47,7 +47,7 @@ const QuestionDetail = () => {
   };
 
   const handleDownvote = () => {
-    if (token === "") {
+    if (token === null) {
       navigate("/login");
       return;
     }
