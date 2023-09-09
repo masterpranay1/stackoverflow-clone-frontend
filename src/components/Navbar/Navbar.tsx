@@ -21,7 +21,7 @@ const Navbar = () => {
       <section
         className="logo_container"
         onClick={() => {
-          window.location.href = "/";
+          navigate("/");
         }}
       >
         <img src={logo} className="logo" />
