@@ -6,6 +6,7 @@
   padding: 20px;
   margin-bottom: 20px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }
 
 /* Styles for question__votes, question__answers, and question__views */

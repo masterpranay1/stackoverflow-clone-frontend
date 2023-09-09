@@ -7,6 +7,7 @@ import Tagspage from "./pages/Tagspage/Tagspage";
 import AskQuestionpage from "./pages/AskQuestionpage/AskQuestionpage";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
+import QuestionDetail from "./pages/QuestionDetail";
 import "./App.css";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path="/ask-question" element={<AskQuestionpage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/questions/:questionId" element={<QuestionDetail />} />
         </Routes>
       </div>
     </>

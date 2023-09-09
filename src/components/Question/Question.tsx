@@ -1,5 +1,6 @@
-import React from 'react';
-import './Question.css';
+import React from "react";
+import "./Question.css";
+import { useNavigate } from "react-router-dom";
 
 interface QuestionProps {
   question: {
@@ -13,12 +14,18 @@ interface QuestionProps {
     votes: number;
     views: number;
     tags: string[];
-  }
+  };
 }
 
 const Question: React.FC<QuestionProps> = ({ question }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/questions/${question.id}`);
+  };
+
   return (
-    <div className="question" key={question.id}>
+    <div className="question" key={question.id} onClick={handleClick}>
       <div className="question__votes">
         <span>{question.votes}</span>
         <span>votes</span>
