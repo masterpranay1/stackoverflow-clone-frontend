@@ -3,7 +3,7 @@ import logo from "../../assets/logo.png";
 import "./Navbar.css";
 
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { toggleSidebar } from "../../features/navbar/navslice";
+import { toggleSidebar, setActiveLink } from "../../features/navbar/navslice";
 import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
@@ -64,6 +64,7 @@ const Navbar = () => {
         token && (
           <section className="navbar-profile" onClick={() => {
             navigate("/profile")
+            dispatch(setActiveLink("Users"));
           }}>
             <img src="https://picsum.photos/200" alt="profile" />
           </section>
