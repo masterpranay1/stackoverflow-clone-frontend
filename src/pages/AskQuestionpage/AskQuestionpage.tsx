@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './AskQuestionpage.css';
-import { useAppDispatch } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { addQuestion } from "../../features/question/questionslice";
 import { useNavigate } from "react-router-dom";
 
@@ -25,6 +25,8 @@ const AskQuestion: React.FC<AskQuestionProps> = () => {
     tags: '',
   });
 
+  const token = useAppSelector((state) => state.auth.token);
+  
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setQuestion((prevQuestion) => ({
@@ -33,19 +35,37 @@ const AskQuestion: React.FC<AskQuestionProps> = () => {
     }));
   };
 
-  const handleSubmit = () => {
-    // onSubmit(question);
+  const handleSubmit = async (e : any) => {
+    e.preventDefault();
+
+    const res = await fetch('http://localhost:5000/api/questions/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        "Authorization": "Bearer " + token,
+      },
+      body: JSON.stringify({
+        title: question.title,
+        description: question.description,
+        tags: question.tags.split(','),
+      })
+    })
+
+    const data = await res.json();
+    console.log(data);
+
     dispatch(addQuestion({
-      id: Math.random().toString(36),
-      title: question.title,
-      description: question.description,
-      tags: question.tags.split(','),
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
-      votes: 0,
-      answers: [],
-      views: 0,
+      id: data.userId,
+      title: data.title,
+      description: data.description,
+      tags: data.tags,
+      createdAt: data.createdAt,
+      updatedAt: data.updatedAt,
+      votes: data.votes,
+      answers: data.answers,
+      views: data.views,
     }));
+
     navigate("/");
     setQuestion({
       title: '',
