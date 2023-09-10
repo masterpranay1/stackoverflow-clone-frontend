@@ -2,8 +2,7 @@ import "./style.css";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { useNavigate, useParams } from "react-router-dom";
 import Sidebar from "../../components/Sidebar/Sidebar";
-import { upvoteQuestion, downvoteQuestion, incrementView } from "../../features/question/questionslice";
-import { useEffect } from "react";
+import { upvoteQuestion, downvoteQuestion } from "../../features/question/questionslice";
 
 interface Answer {
   id: number;
