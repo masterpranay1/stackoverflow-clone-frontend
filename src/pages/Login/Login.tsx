@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import './Login.css';
+import React, { useState } from "react";
+import "./Login.css";
+import UAParser from "ua-parser-js";
 
 const Login: React.FC = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -13,8 +14,26 @@ const Login: React.FC = () => {
     setPassword(e.target.value);
   };
 
-  const handleLogin = () => {
+  const handleLogin = async (e: any) => {
     // Add login logic here (e.g., API call)
+    e.preventDefault();
+    const parser = new UAParser();
+    const parserResults = parser.getResult();
+
+    const res = await fetch("https://api.ipify.org?format=json")
+    const data = await res.json()
+
+
+    const info = {
+      browser: parserResults.browser.name,
+      browserVersion: parserResults.browser.version,
+      os: parserResults.os.name,
+      osVersion: parserResults.os.version,
+      device: parserResults.device.model,
+      ip: data.ip
+    }
+
+    console.log(info);
   };
 
   return (
@@ -23,11 +42,7 @@ const Login: React.FC = () => {
       <form>
         <div>
           <label>Email:</label>
-          <input
-            type="email"
-            value={email}
-            onChange={handleEmailChange}
-          />
+          <input type="email" value={email} onChange={handleEmailChange} />
         </div>
         <div>
           <label>Password:</label>
