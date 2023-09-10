@@ -1,9 +1,28 @@
 import Sidebar from "../../components/Sidebar/Sidebar";
 import { useAppSelector } from "../../app/hooks";
+import { setToken } from "../../features/auth/authslice";
 import "./Profile.css";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const Profile = () => {
+
+  const navigate = useNavigate();
+
   const isSidebarOpen = useAppSelector((state) => state.nav.isSidebarOpen);
+  const token = useAppSelector((state) => state.auth.token);
+
+  const handleLogout = () => {
+    setToken(null);
+  };
+
+  useEffect(() => {
+    if (!token) {
+      navigate("/login");
+    }
+  }, [token])
+
+  
 
   return (
     <div className="profile-page">
@@ -42,6 +61,8 @@ const Profile = () => {
             </div>
           </div>
         </section>
+
+        <button onClick={handleLogout}>Logout</button>
       </div>
     </div>
   );
