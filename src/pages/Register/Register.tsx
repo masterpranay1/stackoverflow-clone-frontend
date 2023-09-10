@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
 import './Register.css';
+import { useAppDispatch } from "../../app/hooks";
+import { useNavigate } from "react-router-dom";
+import { setToken } from "../../features/auth/authslice";
+import { setActiveLink } from "../../features/navbar/navslice";
 
 const Register: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [displayName, setDisplayName] = useState('');
+
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const handleDisplayNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDisplayName(e.target.value);
@@ -18,8 +25,26 @@ const Register: React.FC = () => {
     setPassword(e.target.value);
   };
 
-  const handleRegister = () => {
-    // Add registration logic here (e.g., API call)
+  const handleRegister = async (e : any) => {
+    e.preventDefault();
+    const res = await fetch("http://localhost:5000/api/users/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password, name: displayName }),
+    });
+
+    const json = await res.json();
+
+    if(json.token) {
+      dispatch(setActiveLink("Questions"));
+      dispatch(setToken(json.token));
+      navigate("/questions");
+    } else {
+      alert(json.message);
+    }
+
   };
 
   return (

@@ -1,28 +1,47 @@
 import Sidebar from "../../components/Sidebar/Sidebar";
-import { useAppSelector } from "../../app/hooks";
+import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { setToken } from "../../features/auth/authslice";
 import "./Profile.css";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Profile = () => {
-
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const isSidebarOpen = useAppSelector((state) => state.nav.isSidebarOpen);
   const token = useAppSelector((state) => state.auth.token);
+  const [username, setUsername] = useState("Username");
 
   const handleLogout = () => {
-    setToken(null);
+    dispatch(setToken(null));
+    navigate("/login");
   };
 
   useEffect(() => {
     if (!token) {
       navigate("/login");
     }
-  }, [token])
+  }, [token]);
 
-  
+  useEffect(() => {
+    if (token) {
+      const fetchUser = async () => {
+        const res = await fetch("http://localhost:5000/api/users/me", {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        const json = await res.json();
+
+        setUsername(json.name);
+      };
+
+      fetchUser();
+    }
+  }, []);
 
   return (
     <div className="profile-page">
@@ -34,7 +53,7 @@ const Profile = () => {
             src="https://picsum.photos/200"
             alt="profile"
           />
-          <h2 className="profile__username">Username</h2>
+          <h2 className="profile__username">{username}</h2>
         </header>
 
         <section className="stats">

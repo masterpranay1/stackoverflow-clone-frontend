@@ -1,10 +1,17 @@
 import React, { useState } from "react";
 import "./Login.css";
 import UAParser from "ua-parser-js";
+import { useAppDispatch } from "../../app/hooks";
+import { setActiveLink } from "../../features/navbar/navslice";
+import { setToken } from "../../features/auth/authslice";
+import { useNavigate } from "react-router-dom";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -15,7 +22,6 @@ const Login: React.FC = () => {
   };
 
   const handleLogin = async (e: any) => {
-    // Add login logic here (e.g., API call)
     e.preventDefault();
     const parser = new UAParser();
     const parserResults = parser.getResult();
@@ -34,6 +40,25 @@ const Login: React.FC = () => {
     }
 
     console.log(info);
+
+    const response = await fetch("http://localhost:5000/api/users/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password, ...info }),
+    });
+
+    const json = await response.json();
+
+    if(json.token) {
+      dispatch(setActiveLink("Questions"));
+      dispatch(setToken(json.token));
+      navigate("/questions");
+    } else {
+      alert(json.message);
+    }
+
   };
 
   return (
