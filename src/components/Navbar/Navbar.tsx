@@ -10,8 +10,7 @@ const Navbar = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  // const token = useAppSelector((state) => state.auth.token);
-  const token = 'abcd'
+  const token = useAppSelector((state) => state.auth.token);
 
   const handleBarClick = () => {
     dispatch(toggleSidebar());
@@ -25,6 +24,7 @@ const Navbar = () => {
         className="logo_container"
         onClick={() => {
           navigate("/");
+          dispatch(setActiveLink("Home"));
         }}
       >
         <img src={logo} className="logo" />
