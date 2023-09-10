@@ -25,7 +25,7 @@ const Sidebar = () => {
         navigate('/tags');
         break;
       case 'Users':
-        navigate('/users');
+        navigate('/profile');
         break;
       default:
         navigate('/');
