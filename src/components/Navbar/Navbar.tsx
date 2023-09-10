@@ -62,7 +62,9 @@ const Navbar = () => {
 
       {
         token && (
-          <section className="navbar-profile">
+          <section className="navbar-profile" onClick={() => {
+            navigate("/profile")
+          }}>
             <img src="https://picsum.photos/200" alt="profile" />
           </section>
         )
