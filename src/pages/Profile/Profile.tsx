@@ -27,7 +27,7 @@ const Profile = () => {
   useEffect(() => {
     if (token) {
       const fetchUser = async () => {
-        const res = await fetch("http://localhost:5000/api/users/me", {
+        const res = await fetch("https://stackoverflow-clone-backend-vrer.onrender.com/api/users/me", {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,

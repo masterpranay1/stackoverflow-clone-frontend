@@ -38,7 +38,7 @@ const AskQuestion: React.FC<AskQuestionProps> = () => {
   const handleSubmit = async (e : any) => {
     e.preventDefault();
 
-    const res = await fetch('http://localhost:5000/api/questions/create', {
+    const res = await fetch('https://stackoverflow-clone-backend-vrer.onrender.com/api/questions/create', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
