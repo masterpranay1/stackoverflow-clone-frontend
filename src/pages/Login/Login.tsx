@@ -45,6 +45,7 @@ const Login: React.FC = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "https://stackoverflow-clone-backend-vrer.onrender.com"
       },
       body: JSON.stringify({ email, password, ...info }),
     });
