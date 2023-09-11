@@ -1,11 +1,15 @@
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Question from "../../components/Question/Question";
-import { useAppSelector } from "../../app/hooks";
+import { useAppSelector, useAppDispatch } from "../../app/hooks";
+import { setActiveLink } from "../../features/navbar/navslice";
+import { useNavigate } from "react-router-dom";
 
 import "./Questions.css";
 
 const Questions = () => {
   const isSidebarOpen = useAppSelector((state) => state.nav.isSidebarOpen);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const questions = useAppSelector((state) => state.question.questions);
 
@@ -15,7 +19,10 @@ const Questions = () => {
       <div className="main">
         <header>
           <h2>All Questions</h2>
-          <button className="primary">Ask Question</button>
+          <button className="primary" onClick={() => {
+            dispatch(setActiveLink("Ask Question"));
+            navigate("/ask-question");
+          }}>Ask Question</button>
         </header>
 
         <div className="questions">
